@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * A {@link ListableBeanFactory} backed {@link BuilderFactory}.
  */
-public class FXMLComponentBuilderFactory implements BuilderFactory {
+public class FXMLControllerBuilderFactory implements BuilderFactory {
 
     private static final Builder<Void> NULL_BUILDER = new Builder<Void>() {
 
@@ -30,7 +30,7 @@ public class FXMLComponentBuilderFactory implements BuilderFactory {
 
     private final Map<Class<?>, Builder<?>> builders = new HashMap<>();
 
-    public FXMLComponentBuilderFactory(ListableBeanFactory beanFactory) {
+    public FXMLControllerBuilderFactory(ListableBeanFactory beanFactory) {
         this.beanFactory = beanFactory;
     }
 

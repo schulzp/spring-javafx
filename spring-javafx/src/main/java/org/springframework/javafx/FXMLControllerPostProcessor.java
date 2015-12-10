@@ -14,12 +14,12 @@ import java.net.URL;
 import java.util.Optional;
 
 /**
- * BeanPostProcessor for {@link FXMLComponent} annotation.
+ * BeanPostProcessor for {@link FXMLController} annotation.
  */
 @Component
-public class FXMLComponentPostProcessor implements BeanPostProcessor {
+public class FXMLControllerPostProcessor implements BeanPostProcessor {
 
-    protected final FXMLComponentLoader componentLoader;
+    protected final FXMLControllerLoader componentLoader;
     protected final ResourceLoader resourceLoader;
 
     /**
@@ -37,7 +37,7 @@ public class FXMLComponentPostProcessor implements BeanPostProcessor {
      */
     private String locationSuffix = ".fxml";
 
-    public FXMLComponentPostProcessor(FXMLComponentLoader componentLoader, ResourceLoader resourceLoader) {
+    public FXMLControllerPostProcessor(FXMLControllerLoader componentLoader, ResourceLoader resourceLoader) {
         this.componentLoader = componentLoader;
         this.resourceLoader = resourceLoader;
     }
@@ -57,7 +57,7 @@ public class FXMLComponentPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         Class<?> beanClass = bean.getClass();
-        FXMLComponent annotation = AnnotationUtils.findAnnotation(beanClass, FXMLComponent.class);
+        FXMLController annotation = AnnotationUtils.findAnnotation(beanClass, FXMLController.class);
         if (annotation != null) {
             try {
                 String location = getLocation(annotation).orElseGet(() -> getLocation(beanClass));
@@ -102,14 +102,14 @@ public class FXMLComponentPostProcessor implements BeanPostProcessor {
      * If {@code rootObject} is a {@link Node} and &hellip;
      * <ul>
      *     <li>&hellip; {@link #overrideRootNodeId} is {@code true} the node's ID set to {@code rootId}</li>
-     *     <li>&hellip; {@code controller} implements {@link FXMLComponent.RootNodeAware} {@code rootObject} is passed to {@link FXMLComponent.RootNodeAware#setRootNode(Node)}</li>
+     *     <li>&hellip; {@code controller} implements {@link FXMLController.RootNodeAware} {@code rootObject} is passed to {@link FXMLController.RootNodeAware#setRootNode(Node)}</li>
      * </ul>
      * @param controller the controller used as controller
      * @param rootId the name of the controller used as controller
      * @param rootObject the loaded root object
      * @throws IllegalStateException if {@link #overrideRootNodeId} is {@code true} and the root node ID is already set
-     * @throws ClassCastException if {@code controller} is {@link FXMLComponent.RootNodeAware}
-     * and {@link FXMLComponent.RootNodeAware#setRootNode(Node)} cannot be set to {@code rootObject}
+     * @throws ClassCastException if {@code controller} is {@link FXMLController.RootNodeAware}
+     * and {@link FXMLController.RootNodeAware#setRootNode(Node)} cannot be set to {@code rootObject}
      */
     protected void link(Object controller, String rootId, Object rootObject) {
         if (rootObject instanceof Node) {
@@ -122,8 +122,8 @@ public class FXMLComponentPostProcessor implements BeanPostProcessor {
                 rootNode.setId(rootId);
             }
 
-            if (controller instanceof FXMLComponent.RootNodeAware) {
-                ((FXMLComponent.RootNodeAware) controller).setRootNode(rootNode);
+            if (controller instanceof FXMLController.RootNodeAware) {
+                ((FXMLController.RootNodeAware) controller).setRootNode(rootNode);
             }
         }
     }
@@ -140,11 +140,11 @@ public class FXMLComponentPostProcessor implements BeanPostProcessor {
     /**
      * Extract a resource location from the specified annotation.
      * @param annotation the annotation
-     * @return an optional String which is empty if {@link FXMLComponent#location()} is not set
+     * @return an optional String which is empty if {@link FXMLController#location()} is not set
      */
-    protected Optional<String> getLocation(FXMLComponent annotation) {
+    protected Optional<String> getLocation(FXMLController annotation) {
         String location = annotation.location();
-        if (location.equals(FXMLComponent.DEFAULT_LOCATION)) {
+        if (location.equals(FXMLController.DEFAULT_LOCATION)) {
             return Optional.empty();
         }
         return Optional.of(location);

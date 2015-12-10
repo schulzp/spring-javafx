@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 /**
  * A spring based wrapper for {@link FXMLLoader}.
  */
-public class FXMLComponentLoader {
+public class FXMLControllerLoader {
 
     /**
      * ResourceBundle used for i18n.

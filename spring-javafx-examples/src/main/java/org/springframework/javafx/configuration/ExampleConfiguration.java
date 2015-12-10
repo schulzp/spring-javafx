@@ -6,14 +6,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.javafx.EnableFXMLComponents;
+import org.springframework.javafx.EnableFXMLControllers;
 
 /**
  * Example configuration.
  */
 @Configuration
 @ComponentScan(basePackages = "org.springframework.javafx.controller")
-@EnableFXMLComponents
+@EnableFXMLControllers
 public class ExampleConfiguration {
 
     @Bean

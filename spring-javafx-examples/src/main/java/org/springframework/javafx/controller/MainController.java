@@ -1,13 +1,13 @@
 package org.springframework.javafx.controller;
 
 import javafx.scene.control.SplitPane;
-import org.springframework.javafx.FXMLComponent;
+import org.springframework.javafx.FXMLController;
 
 /**
  * An FXML backed controller.
  */
-@FXMLComponent(location = "fxml/MainLayout.fxml")
-public class MainController implements FXMLComponent.RootNodeAware<SplitPane> {
+@FXMLController(location = "fxml/MainLayout.fxml")
+public class MainController implements FXMLController.RootNodeAware<SplitPane> {
 
     private SplitPane rootNode;
 

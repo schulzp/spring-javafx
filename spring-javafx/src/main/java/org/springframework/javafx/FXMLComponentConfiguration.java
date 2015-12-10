@@ -15,7 +15,7 @@ import org.springframework.core.io.ResourceLoader;
 import java.util.ResourceBundle;
 
 /**
- * {@link FXMLComponent} support configuration.
+ * {@link FXMLController} support configuration.
  */
 @Configuration
 public class FXMLComponentConfiguration {
@@ -26,29 +26,29 @@ public class FXMLComponentConfiguration {
     }
 
     @Bean
-    public FXMLComponentControllerFactory fxmlComponentControllerFactory(BeanFactory beanFactory) {
-        return new FXMLComponentControllerFactory(beanFactory);
+    public FXMLControllerFactory fxmlComponentControllerFactory(BeanFactory beanFactory) {
+        return new FXMLControllerFactory(beanFactory);
     }
 
     @Bean
-    public FXMLComponentBuilderFactory fxmlComponentBuilderFactory(ListableBeanFactory beanFactory) {
-        return new FXMLComponentBuilderFactory(beanFactory);
+    public FXMLControllerBuilderFactory fxmlComponentBuilderFactory(ListableBeanFactory beanFactory) {
+        return new FXMLControllerBuilderFactory(beanFactory);
     }
 
     @Bean
-    public FXMLComponentLoader fxmlComponentLoader(@Qualifier("fxmlComponentControllerFactory") Callback<Class<?>, Object> controllerFactory,
-                                                   @Qualifier("fxmlComponentBuilderFactory") BuilderFactory builderFactory,
-                                                   @Qualifier("fxmlComponentResourceBundle") ResourceBundle resourceBundle) {
-        FXMLComponentLoader fxmlComponentLoader = new FXMLComponentLoader();
-        fxmlComponentLoader.setControllerFactory(controllerFactory);
-        fxmlComponentLoader.setBuilderFactory(builderFactory);
-        fxmlComponentLoader.setResourceBundle(resourceBundle);
-        return fxmlComponentLoader;
+    public FXMLControllerLoader fxmlComponentLoader(@Qualifier("fxmlComponentControllerFactory") Callback<Class<?>, Object> controllerFactory,
+                                                    @Qualifier("fxmlComponentBuilderFactory") BuilderFactory builderFactory,
+                                                    @Qualifier("fxmlComponentResourceBundle") ResourceBundle resourceBundle) {
+        FXMLControllerLoader fxmlControllerLoader = new FXMLControllerLoader();
+        fxmlControllerLoader.setControllerFactory(controllerFactory);
+        fxmlControllerLoader.setBuilderFactory(builderFactory);
+        fxmlControllerLoader.setResourceBundle(resourceBundle);
+        return fxmlControllerLoader;
     }
 
     @Bean
-    public FXMLComponentPostProcessor fxmlComponentPostProcessor(FXMLComponentLoader fxmlComponentLoader, ResourceLoader resourceLoader) {
-        return new FXMLComponentPostProcessor(fxmlComponentLoader, resourceLoader);
+    public FXMLControllerPostProcessor fxmlComponentPostProcessor(FXMLControllerLoader fxmlControllerLoader, ResourceLoader resourceLoader) {
+        return new FXMLControllerPostProcessor(fxmlControllerLoader, resourceLoader);
     }
 
 }

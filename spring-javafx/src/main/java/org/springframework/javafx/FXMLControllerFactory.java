@@ -6,11 +6,11 @@ import org.springframework.beans.factory.BeanFactory;
 /**
  * A {@link BeanFactory} backed controller factory.
  */
-public class FXMLComponentControllerFactory implements Callback<Class<?>, Object> {
+public class FXMLControllerFactory implements Callback<Class<?>, Object> {
 
     private final BeanFactory beanFactory;
 
-    public FXMLComponentControllerFactory(BeanFactory beanFactory) {
+    public FXMLControllerFactory(BeanFactory beanFactory) {
         this.beanFactory = beanFactory;
     }
 

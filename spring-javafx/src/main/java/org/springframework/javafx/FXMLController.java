@@ -2,6 +2,7 @@ package org.springframework.javafx;
 
 import javafx.scene.Node;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.lang.annotation.*;
 
@@ -10,13 +11,13 @@ import java.lang.annotation.*;
  *
  * <h3>Usage</h3>
  *
- * Any class annotated with {@link FXMLComponent} will be used as a controller for the root node loaded from the
- * FXML resource specified in {@link FXMLComponent#location()}.
+ * Any class annotated with {@link FXMLController} will be used as a controller for the root node loaded from the
+ * FXML resource specified in {@link FXMLController#location()}.
  *
- * See {@link FXMLComponentPostProcessor} for details regarding the resource resolution.
+ * See {@link FXMLControllerPostProcessor} for details regarding the resource resolution.
  *
  * <pre title="with implicit location">
- * &#64;FXMLComponent // location defaults to the annotated class' name
+ * &#64;FXMLController // location defaults to the annotated class' name
  * public class Sidebar {
  *
  *     &#64;FXML
@@ -25,7 +26,7 @@ import java.lang.annotation.*;
  * }
  * </pre>
  * <pre title="with explicit location">
- * &#64;FXMLComponent(location = "fxml/alternative-sidebar.fxml")
+ * &#64;FXMLController(location = "fxml/alternative-sidebar.fxml")
  * public class Sidebar {
  *
  *     &#64;FXML
@@ -38,8 +39,8 @@ import java.lang.annotation.*;
 @Retention(value=RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Component
-public @interface FXMLComponent {
+@Controller
+public @interface FXMLController {
 
     String DEFAULT_LOCATION = "";
 
@@ -51,17 +52,17 @@ public @interface FXMLComponent {
     String location() default DEFAULT_LOCATION;
 
     /**
-     * Marks a {@link FXMLComponent} annotated as parent aware.
+     * Marks a {@link FXMLController} annotated as parent aware.
      *
      * <h3>Usage</h3>
      *
-     * Any {@link FXMLComponent} annotated class implementing {@link RootNodeAware} will get the root node injected.
+     * Any {@link FXMLController} annotated class implementing {@link RootNodeAware} will get the root node injected.
      *
      * <pre>
-     * &#64;FXMLComponent
+     * &#64;FXMLController
      * pubilc class Sidebar implements RootNodeAware&lt;VBox&gt; {
      *
-     *     private VBox parent; // gets injected by FXMLComponentLoader
+     *     private VBox parent; // gets injected by FXMLControllerLoader
      *
      *     &#64;Override
      *     public VBox getRootNode() {
