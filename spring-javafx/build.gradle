@@ -1,3 +1,29 @@
+buildscript {
+    repositories {
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    }
+    dependencies {
+        classpath 'org.junit.prototype:junit-gradle:5.0.0-SNAPSHOT'
+    }
+}
+
+apply plugin: 'org.junit.gen5.gradle'
+
+junit5 {
+    version '5.0.0-SNAPSHOT'
+    matchClassName '.*Test'
+}
+
+repositories {
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+compileTestJava {
+    options.compilerArgs += '-parameters'
+}
+
 dependencies {
     compile group: group, name: 'spring-context', version: vSpringCore
+
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.0.31-beta'
 }

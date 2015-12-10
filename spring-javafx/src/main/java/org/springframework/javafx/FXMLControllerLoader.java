@@ -51,13 +51,17 @@ public class FXMLControllerLoader {
      * @throws IOException see see {@link FXMLLoader#load()}
      */
     public Object load(URL location, Object controller) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(location);
+        FXMLLoader loader = createFXMLLoader();
         loader.setControllerFactory(controllerFactory);
         loader.setBuilderFactory(builderFactory);
         loader.setResources(resourceBundle);
         loader.setController(controller);
+        loader.setLocation(location);
         return loader.load();
+    }
+
+    protected FXMLLoader createFXMLLoader() {
+        return new FXMLLoader();
     }
 
 }

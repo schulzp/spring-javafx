@@ -6,7 +6,7 @@ import org.springframework.beans.factory.BeanFactory;
 /**
  * A {@link BeanFactory} backed controller factory.
  */
-public class FXMLControllerFactory implements Callback<Class<?>, Object> {
+public class FXMLControllerFactory<T> implements Callback<Class<T>, T> {
 
     private final BeanFactory beanFactory;
 
@@ -15,7 +15,7 @@ public class FXMLControllerFactory implements Callback<Class<?>, Object> {
     }
 
     @Override
-    public Object call(Class<?> type) {
+    public T call(Class<T> type) {
         return beanFactory.getBean(type);
     }
 
