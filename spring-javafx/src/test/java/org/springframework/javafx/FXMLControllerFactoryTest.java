@@ -1,6 +1,6 @@
 package org.springframework.javafx;
 
-import com.example.mockito.MockitoExtension;
+import org.springframework.test.MockitoExtension;
 import org.junit.gen5.api.Test;
 import org.junit.gen5.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

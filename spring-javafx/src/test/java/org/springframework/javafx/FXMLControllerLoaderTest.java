@@ -1,6 +1,6 @@
 package org.springframework.javafx;
 
-import com.example.mockito.MockitoExtension;
+import org.springframework.test.MockitoExtension;
 import javafx.fxml.FXMLLoader;
 import javafx.util.BuilderFactory;
 import javafx.util.Callback;
