@@ -1,8 +1,11 @@
 Spring JavaFX Integration
 =========================
 
-This project is provides basic spring integration for JavaFX.
+This project provides spring integration for JavaFX.
+In other words: The life-cycle of JavaFX controllers
+is managed by spring.
+
 
 # Usage
 
-Please have a look at the example project.
+Please have a look at the examples project.
