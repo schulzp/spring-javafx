@@ -1,0 +1,7 @@
+group += '.boot'
+
+dependencies {
+    compile group: group, name: 'spring-boot', version: vSpringBoot
+
+    runtime project(':spring-javafx')
+}

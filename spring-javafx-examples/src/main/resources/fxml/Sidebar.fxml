@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.springframework.javafx.controller.SidebarController">
+    <Text fx:id="text" text="%sidebar.text" />
+    <Button fx:id="button" text="%sidebar.button" />
+</VBox>
