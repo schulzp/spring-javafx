@@ -6,9 +6,9 @@
            dividerPositions="0.3f" minWidth="800" minHeight="400"
            orientation="HORIZONTAL">
     <items>
-        <GridPane fx:id="left">
+        <GridPane fx:id="sidebar">
             <fx:include source="Sidebar.fxml" />
         </GridPane>
-        <GridPane fx:id="main"/>
+        <GridPane fx:id="content" hgap="10" vgap="10" />
     </items>
 </SplitPane>
