@@ -1,10 +1,7 @@
-Spring JavaFX Integration
-=========================
+Spring Powered JavaFX Applications
+==================================
 
-This project provides spring integration for JavaFX.
-In other words: The life-cycle of JavaFX controllers
-is managed by spring.
-
+This project provides Spring integration for JavaFX. That is, FXML Controllers are first-class citizen Spring Beans.
 
 # Usage
 
