@@ -5,10 +5,15 @@ plugins {
 
 release {
     buildTasks = ['releaseBuild']
+    failOnSnapshotDependencies = false
+    failOnPublishNeeded = false
 }
 
 task releaseBuild {
-
+    dependsOn(
+            'spring-javafx:build',
+            'spring-boot-javafx:build'
+    )
 }
 
 allprojects {
@@ -19,8 +24,7 @@ allprojects {
     group = 'org.springframework'
 
     release {
-        failOnSnapshotDependencies = false
-        failOnPublishNeeded = false
+
     }
 }
 
