@@ -53,6 +53,10 @@ subprojects {
         }
     }
 
+    ext {
+        bintrayPackageVersion = version
+    }
+
     bintray {
         user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
         key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
@@ -70,9 +74,9 @@ subprojects {
             issueTrackerUrl = 'https://github.com/schulzp/spring-javafx/issues'
             publicDownloadNumbers = true
             version {
-                name = getVersion()
-                desc = "Spring JavaFX Integration ${getVersion()}"
-                vcsTag = getVersion()
+                name = bintrayPackageVersion
+                desc = "Spring JavaFX Integration $bintrayPackageVersion"
+                vcsTag = bintrayPackageVersion
             }
         }
     }
