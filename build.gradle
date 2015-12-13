@@ -7,6 +7,8 @@ release {
     buildTasks = ['releaseBuild']
 }
 
+afterReleaseBuild.dependsOn bintrayUpload
+
 task releaseBuild {
     dependsOn(
             'spring-javafx:build',
@@ -24,6 +26,12 @@ allprojects {
     release {
         failOnPublishNeeded = false
         failOnSnapshotDependencies = false
+    }
+
+    publishing {
+        publications {
+            maven(MavenPublication)
+        }
     }
 }
 
