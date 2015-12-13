@@ -22,7 +22,6 @@ allprojects {
     group = 'org.springframework'
 
     release {
-        useAutomaticVersion = true
         failOnPublishNeeded = false
         failOnSnapshotDependencies = false
     }
