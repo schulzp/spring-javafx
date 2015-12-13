@@ -5,8 +5,6 @@ plugins {
 
 release {
     buildTasks = ['releaseBuild']
-    failOnSnapshotDependencies = false
-    failOnPublishNeeded = false
 }
 
 task releaseBuild {
@@ -24,7 +22,9 @@ allprojects {
     group = 'org.springframework'
 
     release {
-
+        useAutomaticVersion = true
+        failOnPublishNeeded = false
+        failOnSnapshotDependencies = false
     }
 }
 
