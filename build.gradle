@@ -69,6 +69,11 @@ subprojects {
             websiteUrl = 'https://github.com/schulzp/spring-javafx'
             issueTrackerUrl = 'https://github.com/schulzp/spring-javafx/issues'
             publicDownloadNumbers = true
+            version {
+                name = version
+                desc = "Spring JavaFX Integration $version"
+                vcsTag = version
+            }
         }
     }
 
