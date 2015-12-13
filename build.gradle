@@ -1,32 +1,23 @@
 plugins {
-    id "com.jfrog.bintray" version "1.4"
+    id 'com.jfrog.bintray' version '1.4'
+    id 'net.researchgate.release' version '2.3.4'
+}
+
+release {
+    buildTasks = ['releaseBuild']
+}
+
+task releaseBuild {
+
 }
 
 allprojects {
     apply plugin: 'idea'
     apply plugin: 'eclipse'
     apply plugin: 'maven-publish'
-    apply plugin: 'com.jfrog.bintray'
 
     group = 'org.springframework'
-    version = '1.0.0-SNAPSHOT'
-
-    bintray {
-        user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-        key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
-        publications = ['maven']
-        pkg {
-            repo = 'generic'
-            name = name
-            desc = 'Spring JavaFX Integration'
-            labels = ['spring', 'javafx']
-            licenses = ['Apache-2.0']
-            vcsUrl = 'https://github.com/schulzp/spring-javafx.git'
-            websiteUrl = 'https://github.com/schulzp/spring-javafx'
-            issueTrackerUrl = 'https://github.com/schulzp/spring-javafx/issues'
-            publicDownloadNumbers = true
-        }
-    }
+    version = '0.5.0-SNAPSHOT'
 }
 
 subprojects {
@@ -55,6 +46,26 @@ subprojects {
             }
         }
     }
+
+    bintray {
+        user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+        key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+        publications = ['maven']
+        dryRun = false
+        pkg {
+            repo = 'maven'
+            name = 'spring-javafx'
+            desc = 'Spring JavaFX Integration'
+            labels = ['spring', 'javafx']
+            licenses = ['Apache-2.0']
+            vcsUrl = 'https://github.com/schulzp/spring-javafx.git'
+            websiteUrl = 'https://github.com/schulzp/spring-javafx'
+            issueTrackerUrl = 'https://github.com/schulzp/spring-javafx/issues'
+            publicDownloadNumbers = true
+        }
+    }
+
+    afterReleaseBuild.dependsOn bintrayUpload
 
     repositories {
         mavenCentral()
