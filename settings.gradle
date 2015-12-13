@@ -1,0 +1,3 @@
+include 'spring-javafx', 'spring-boot-javafx', 'spring-javafx-examples'
+
+rootProject.name = 'spring-javafx-parent'
