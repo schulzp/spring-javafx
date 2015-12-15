@@ -16,9 +16,16 @@ task releaseBuild {
     )
 }
 
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+idea {
+    project {
+        languageLevel = '1.8'
+    }
+}
+
 allprojects {
-    apply plugin: 'idea'
-    apply plugin: 'eclipse'
     apply plugin: 'maven-publish'
 
     group = 'org.springframework'
