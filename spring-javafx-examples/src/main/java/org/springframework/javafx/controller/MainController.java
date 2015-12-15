@@ -12,7 +12,7 @@ import javax.annotation.PostConstruct;
 /**
  * An FXML backed controller.
  */
-@FXMLController(location = "fxml/MainLayout.fxml")
+@FXMLController
 public class MainController implements FXMLController.RootNodeAware<SplitPane> {
 
     private SplitPane rootNode;

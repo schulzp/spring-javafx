@@ -19,6 +19,7 @@ import java.util.Optional;
 @Component
 public class FXMLControllerPostProcessor implements BeanPostProcessor {
 
+    public static final String DEFAULT_STRIP_SUFFIX = "Controller";
     protected final FXMLControllerLoader componentLoader;
     protected final ResourceLoader resourceLoader;
 
@@ -37,6 +38,8 @@ public class FXMLControllerPostProcessor implements BeanPostProcessor {
      */
     private String locationSuffix = ".fxml";
 
+    private String stripSuffix = DEFAULT_STRIP_SUFFIX;
+
     public FXMLControllerPostProcessor(FXMLControllerLoader componentLoader, ResourceLoader resourceLoader) {
         this.componentLoader = componentLoader;
         this.resourceLoader = resourceLoader;
@@ -52,6 +55,10 @@ public class FXMLControllerPostProcessor implements BeanPostProcessor {
 
     public void setOverrideRootNodeId(boolean overrideRootNodeId) {
         this.overrideRootNodeId = overrideRootNodeId;
+    }
+
+    public void setStripSuffix(String stripSuffix) {
+        this.stripSuffix = stripSuffix;
     }
 
     @Override
@@ -134,7 +141,14 @@ public class FXMLControllerPostProcessor implements BeanPostProcessor {
      * @return a String
      */
     protected String getLocation(Class<?> beanClass) {
-        return locationPrefix + beanClass.getSimpleName() + locationSuffix;
+        String fileName = beanClass.getSimpleName();
+        if (stripSuffix != null) {
+            int end = fileName.lastIndexOf(stripSuffix);
+            if (end > 0) {
+                fileName = fileName.substring(0, end);
+            }
+        }
+        return locationPrefix + fileName + locationSuffix;
     }
 
     /**
