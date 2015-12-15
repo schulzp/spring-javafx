@@ -1,4 +1,4 @@
-Spring Powered JavaFX Applications
+Spring Powered JavaFX Applications [![Build Status](https://travis-ci.org/schulzp/spring-javafx.svg?branch=master)](https://travis-ci.org/schulzp/spring-javafx)
 ==================================
 
 This project provides Spring integration for JavaFX. That is, FXML Controllers are first-class citizen Spring Beans.
